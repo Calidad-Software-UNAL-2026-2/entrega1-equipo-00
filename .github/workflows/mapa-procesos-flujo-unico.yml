@@ -181,7 +181,7 @@ jobs:
         - name: Descargar artifact
           uses: actions/download-artifact@v4
           with:
-            name: mapa-procesos-rama-software
+            name: mapa-procesos
             path: docs/
         - name: Agregar este proceso
           run: |
