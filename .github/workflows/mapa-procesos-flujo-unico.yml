@@ -169,8 +169,8 @@ jobs:
       - name: Subir artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mapa-procesos-rama-software
-          path: docs/mapa-procesos-rama-software.md
+          name: mapa-procesos.md
+          path: docs/mapa-procesos.md
           overwrite: true
       
   rama_software_pruebas:
