@@ -33,3 +33,10 @@
 - **Salidas:** Reporte de pruebas, defectos identificados
 - **Recursos:** Plan de pruebas, casos de prueba
 
+### Proceso: Pruebas de integración del software
+
+- **Entradas:** API de ingesta y dashboard en entorno de pruebas (procesos anteriores); requisitos funcionales y no funcionales (Paso 2)
+- **Actividades:** Diseño y ejecución de casos de prueba de integración entre API y dashboard, pruebas de carga sobre la ingesta, verificación de los criterios de aceptación, registro y corrección de defectos
+- **Salidas:** Reporte de pruebas de software; lista de defectos y su estado; software validado para la integración final
+- **Recursos:** Plan de pruebas, framework de pruebas automatizadas, herramienta de pruebas de carga, entorno de pruebas
+
