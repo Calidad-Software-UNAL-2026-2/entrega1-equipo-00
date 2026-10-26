@@ -135,13 +135,15 @@ jobs:
           path: docs/mapa-procesos.md
           overwrite: true
 
+  
+
   # -----------------------------------------------------------------
   # Último proceso: agrega su propia información Y, en el mismo job,
   # hace el commit/push del documento final. Cambia el "needs:" para
   # que apunte a tu ÚLTIMO proceso real.
   # -----------------------------------------------------------------
   testing:
-    name: "Testing"
+    name: "Pruebas Unitarias"
     needs: implementacion
     runs-on: ubuntu-latest
     steps:
@@ -164,7 +166,37 @@ jobs:
           - **Recursos:** Plan de pruebas, casos de prueba
 
           EOF
-      - name: Commit y push
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Subir artifact
+        uses: actions/upload-artifact@v4
         with:
-          commit_message: "docs(mapa-procesos): actualizar mapa de procesos (flujo único)"
+          name: mapa-procesos-rama-software
+          path: docs/mapa-procesos-rama-software.md
+          overwrite: true
+      
+  rama_software_pruebas:
+      name: "Pruebas de integración del software"
+      needs: testing
+      runs-on: ubuntu-latest
+      steps:
+        - name: Descargar artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: mapa-procesos-rama-software
+            path: docs/
+        - name: Agregar este proceso
+          run: |
+            cat <<'EOF' >> docs/mapa-procesos-rama-software.md
+            ### Proceso: Pruebas de integración del software
+  
+            - **Entradas:** API de ingesta y dashboard en entorno de pruebas (procesos anteriores); requisitos funcionales y no funcionales (Paso 2)
+            - **Actividades:** Diseño y ejecución de casos de prueba de integración entre API y dashboard, pruebas de carga sobre la ingesta, verificación de los criterios de aceptación, registro y corrección de defectos
+            - **Salidas:** Reporte de pruebas de software; lista de defectos y su estado; software validado para la integración final
+            - **Recursos:** Plan de pruebas, framework de pruebas automatizadas, herramienta de pruebas de carga, entorno de pruebas
+  
+            EOF
+        - name: Commit y push
+          uses: stefanzweifel/git-auto-commit-action@v5
+          with:
+            commit_message: "docs(mapa-procesos): actualizar mapa de procesos (flujo único)"
+        
+ 
