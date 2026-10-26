@@ -169,7 +169,7 @@ jobs:
       - name: Subir artifact
         uses: actions/upload-artifact@v4
         with:
-          name: mapa-procesos.md
+          name: mapa-procesos
           path: docs/mapa-procesos.md
           overwrite: true
       
@@ -185,7 +185,7 @@ jobs:
             path: docs/
         - name: Agregar este proceso
           run: |
-            cat <<'EOF' >> docs/mapa-procesos-rama-software.md
+            cat <<'EOF' >> docs/mapa-procesos.md
             ### Proceso: Pruebas de integración del software
   
             - **Entradas:** API de ingesta y dashboard en entorno de pruebas (procesos anteriores); requisitos funcionales y no funcionales (Paso 2)
