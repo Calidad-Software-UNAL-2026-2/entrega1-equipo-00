@@ -112,11 +112,6 @@ jobs:
     needs: diseno
     runs-on: ubuntu-latest
     steps:
-      - name: Descargar artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: mapa-procesos
-          path: docs/
       - name: Agregar este proceso al documento
         run: |
           cat <<'EOF' >> docs/mapa-procesos.md
@@ -178,6 +173,9 @@ jobs:
       needs: testing
       runs-on: ubuntu-latest
       steps:
+        - uses: actions/checkout@v4
+          with:
+            ref: main
         - name: Descargar artifact
           uses: actions/download-artifact@v4
           with:
